@@ -50,6 +50,10 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
 gcc --version
 g++ --version
 
+# HElib Specific
+## NTL
+sudo apt-get install -y libntl-dev
+
 echo
 echo -e "\nCOMPELTED REQUIREMENT INSTALLATION\n"
 
