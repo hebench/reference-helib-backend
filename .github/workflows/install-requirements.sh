@@ -27,7 +27,7 @@ pre-commit --version
 which cmake
 mkdir cmake-tmp
 pushd cmake-tmp
-VERSION=3.15.3 # Use any version 3.12+ (3.15+ required for cmake --install vs make install)
+VERSION=3.16.3 # Use any version 3.12+ (3.15+ required for cmake --install vs make install) (3.16+ required for helib)
 wget https://github.com/Kitware/CMake/releases/download/v$VERSION/cmake-$VERSION-linux-x86_64.sh
 sudo chmod +x cmake-$VERSION-linux-x86_64.sh
 sudo ./cmake-$VERSION-linux-x86_64.sh --skip-license --prefix=/usr/local # Will overwrite a cmake installation
