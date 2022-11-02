@@ -42,13 +42,13 @@ public:
     static constexpr const char *AlgorithmDescription = "using Horner method for polynomial evaluation";
 
     // HE specific parameters
-    static constexpr std::size_t DefaultPolyModulusDegree = 32768;
-    static constexpr std::size_t DefaultCoeffModulusBits  = 613;
-    static constexpr std::size_t DefaultKeySwitchColumns  = 3;
-    static constexpr std::size_t DefaultPrecision         = 50;
+    static constexpr std::size_t DefaultPolyModulusDegree = 16384;
+    static constexpr std::size_t DefaultCoeffModulusBits  = 358;
+    static constexpr std::size_t DefaultKeySwitchColumns  = 6;
+    static constexpr std::size_t DefaultPrecision         = 35;
 
     // other workload parameters
-    static constexpr std::size_t DefaultNumThreads = 1; // 0 - use all available threads
+    static constexpr std::size_t DefaultNumThreads = 0; // 0 - use all available threads
 
     enum : std::uint64_t
     {
@@ -124,7 +124,7 @@ private:
     static constexpr std::int64_t EncodedResultTag     = 0x80;
 
     // coefficients for sigmoid polynomial approx
-    static constexpr const double SigmoidPolyCoeff[] = { 0.5, 0.150, 0.0,
+    static constexpr const double SigmoidPolyCoeff[] = { 0.5, 0.15012, 0.0,
                                                          -0.0015930078125 };
 
     helib::PtxtArray encodeW(const hebench::APIBridge::DataPack &data_pack);

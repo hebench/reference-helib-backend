@@ -29,7 +29,7 @@ public:
     static constexpr std::size_t DefaultHenselLifting    = 1;
 
     // other workload parameters
-    static constexpr std::size_t DefaultNumThreads = 1; // 0 - use all available threads
+    static constexpr std::size_t DefaultNumThreads = 0; // 0 - use all available threads
 
     enum : std::uint64_t
     {

@@ -135,7 +135,10 @@ void HELIBContextWrapper::decrypt(const helib::Ctxt &cipher,
 {
     try
     {
-        plain.decrypt(cipher, secretKey());
+        if (context().isCKKS())
+            plain.rawDecrypt(cipher, secretKey());
+        else
+            plain.decrypt(cipher, secretKey());
     }
     catch (std::exception &ex)
     {
@@ -151,7 +154,10 @@ helib::PtxtArray HELIBContextWrapper::decrypt(const helib::Ctxt &cipher)
 
     try
     {
-        retval.decrypt(temp, secretKey());
+        if (context().isCKKS())
+            retval.rawDecrypt(temp, secretKey());
+        else
+            retval.decrypt(temp, secretKey());
     }
     catch (std::exception &ex)
     {
@@ -169,7 +175,10 @@ HELIBContextWrapper::decrypt(const std::vector<helib::Ctxt> &cipher)
     for (std::size_t i = 0; i < cipher.size(); i++)
     {
         retval.push_back(helib::PtxtArray(context()));
-        retval[i].decrypt(cipher[i], secretKey());
+        if (context().isCKKS())
+            retval[i].rawDecrypt(cipher[i], secretKey());
+        else
+            retval[i].decrypt(cipher[i], secretKey());
     }
     return retval;
 }
@@ -419,7 +428,6 @@ void HELIBContextWrapper::totalSums(helib::Ctxt &ctxt)
 {
     const helib::EncryptedArray &ea = context().getEA();
     long n                          = ea.size(); // slot-count
-
     if (n == 1)
         return;
 
@@ -537,10 +545,6 @@ helib::Ctxt HELIBContextWrapper::evalPoly(
         retval *= cipher_input;
         retval.reLinearize();
         retval += plain_coefficients[i];
-
-        retval.bumpNoiseBound(
-            0.00001); // to control the error bound level from exceeding
-
     } // end for
 
     return retval;

@@ -149,5 +149,5 @@ void HELIBEngine::init()
         std::make_shared<hbe::ckks::LogRegBenchmarkDescription>(hebench::APIBridge::Category::Latency));
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::LogRegBenchmarkDescription>(hebench::APIBridge::Category::Offline,
-                                                                4));
+                                                                0));
 }
