@@ -21,7 +21,9 @@ jobs:
 
     - name: Setup
       working-directory: ${{github.workspace}}
-      run: echo yes | .github/workflows/install-requirements.sh
+      run: |
+        echo "Available Memory: $(free -g)"
+        echo yes | .github/workflows/install-requirements.sh
 
     - name: Format
       run: |
@@ -43,6 +45,7 @@ jobs:
         ./test_harness --config_file ./config.yaml --random_seed 1234 --report_delay 0 --backend_lib_path ../lib/libhebench_helib_backend.so --dump
         sed -i 's/default_sample_size: 0/default_sample_size: 3/g' config.yaml
         ./test_harness --config_file ./config.yaml --random_seed 1234 --report_delay 0 --backend_lib_path ../lib/libhebench_helib_backend.so |& tee test_harness_output.log
+        echo "Exit Status: $?"
 
     - name: Validation
       working-directory: ${{github.workspace}}/build/bin
