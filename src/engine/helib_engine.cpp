@@ -99,48 +99,55 @@ void HELIBEngine::init()
 
     // eltwiseadd
 
-    addBenchmarkDescription(
+    /*addBenchmarkDescription(
         std::make_shared<hbe::bgv::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Latency,
                                                                     hebench::APIBridge::Workload::EltwiseAdd));
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Latency,
                                                                      hebench::APIBridge::Workload::EltwiseAdd));
-    addBenchmarkDescription(
+    /*addBenchmarkDescription(
         std::make_shared<hbe::bgv::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Offline,
                                                                     hebench::APIBridge::Workload::EltwiseAdd));
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Offline,
                                                                      hebench::APIBridge::Workload::EltwiseAdd));
 
-    // eltwisemult
+    /* eltwisemult
     addBenchmarkDescription(
         std::make_shared<hbe::bgv::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Latency,
                                                                     hebench::APIBridge::Workload::EltwiseMultiply));
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Latency,
                                                                      hebench::APIBridge::Workload::EltwiseMultiply));
-    addBenchmarkDescription(
+    /*addBenchmarkDescription(
         std::make_shared<hbe::bgv::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Offline,
                                                                     hebench::APIBridge::Workload::EltwiseMultiply));
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::ElementWiseBenchmarkDescription>(hebench::APIBridge::Category::Offline,
                                                                      hebench::APIBridge::Workload::EltwiseMultiply));
 
     // dot product
-    addBenchmarkDescription(
+    /*addBenchmarkDescription(
         std::make_shared<hbe::bgv::DotProductBenchmarkDescription>(
             hebench::APIBridge::Category::Latency));
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::DotProductBenchmarkDescription>(hebench::APIBridge::Category::Latency));
-    addBenchmarkDescription(
+    /*addBenchmarkDescription(
         std::make_shared<hbe::bgv::DotProductBenchmarkDescription>(
             hebench::APIBridge::Category::Offline));
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::DotProductBenchmarkDescription>(hebench::APIBridge::Category::Offline));
 
     // matrix mult.
-    addBenchmarkDescription(
+    /*addBenchmarkDescription(
         std::make_shared<hbe::bgv::MatMultValBenchmarkDescription>());
+    */
     addBenchmarkDescription(
         std::make_shared<hbe::ckks::MatMultValBenchmarkDescription>());
 
