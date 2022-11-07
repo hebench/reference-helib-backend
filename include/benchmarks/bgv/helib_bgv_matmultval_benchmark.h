@@ -28,10 +28,10 @@ public:
     static constexpr const char *AlgorithmDescription = "One matrix row per ciphertext, Encode transposes second matrix";
 
     // HE specific parameters
-    static constexpr std::size_t DefaultCyclotomicPoly   = 32768;
-    static constexpr std::size_t DefaultCoeffModulusBits = 200;
+    static constexpr std::size_t DefaultCyclotomicPoly   = 16384;
+    static constexpr std::size_t DefaultCoeffModulusBits = 174;
     static constexpr std::size_t DefaultKeySwitchColumns = 3;
-    static constexpr std::size_t DefaultPtxtPrimeModulus = 65537;
+    static constexpr std::size_t DefaultPtxtPrimeModulus = 114689;
     static constexpr std::size_t DefaultHenselLifting    = 1;
 
     // other workload parameters
