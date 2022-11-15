@@ -22,7 +22,7 @@ public:
     static constexpr std::size_t NumOpParams          = 2;
 
     // all params generated using HEToolkit by setting DefaultPtxtPrimeModulus to be a Fermat Prime in BGV
-    static constexpr std::size_t DefaultCyclotomicPoly   = 16384;
+    static constexpr std::size_t DefaultPolyModulusDegree   = 8192;
     static constexpr std::size_t DefaultCoeffModulusBits = 174;
     static constexpr std::size_t DefaultKeySwitchColumns = 3;
     static constexpr std::size_t DefaultPtxtPrimeModulus = 114689; //-1 for CKKS
@@ -36,7 +36,7 @@ public:
         Index_WParamsStart = 0,
         Index_n            = Index_WParamsStart,
         Index_ExtraWParamsStart,
-        Index_CyclotomicPoly = Index_ExtraWParamsStart,
+        Index_PolyModulusDegree = Index_ExtraWParamsStart,
         Index_CoefficientModulusBits,
         Index_KeySwitchColumns,
         Index_PtxtPrimeModulus,

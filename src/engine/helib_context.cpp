@@ -26,12 +26,12 @@ HELIBContextWrapper::createCKKSContext(std::size_t poly_modulus_degree,
 }
 
 HELIBContextWrapper::Ptr HELIBContextWrapper::createBGVContext(
-    std::size_t cyclotomic_poly, int coeff_moduli_bits, int key_switch_columns,
+    std::size_t poly_modulus_degree, int coeff_moduli_bits, int key_switch_columns,
     int ptxt_prime_modulus, int helsel_lifting)
 {
     HELIBContextWrapper::Ptr retval =
         HELIBContextWrapper::Ptr(new HELIBContextWrapper());
-    retval->initBGV(cyclotomic_poly, coeff_moduli_bits, key_switch_columns,
+    retval->initBGV(poly_modulus_degree, coeff_moduli_bits, key_switch_columns,
                     ptxt_prime_modulus, helsel_lifting);
     return retval;
 }
@@ -77,7 +77,7 @@ void HELIBContextWrapper::initCKKS(std::size_t poly_modulus_degree,
     }
 }
 
-void HELIBContextWrapper::initBGV(std::size_t cyclotomic_poly,
+void HELIBContextWrapper::initBGV(std::size_t poly_modulus_degree,
                                   int coeff_moduli_bits, int key_switch_columns,
                                   int ptxt_prime_modulus, int helsel_lifting)
 {
@@ -85,7 +85,7 @@ void HELIBContextWrapper::initBGV(std::size_t cyclotomic_poly,
     try
     {
         m_context = helib::ContextBuilder<helib::BGV>()
-                        .m(cyclotomic_poly)
+                        .m(2 * poly_modulus_degree)
                         .bits(coeff_moduli_bits)
                         .c(key_switch_columns)
                         .p(ptxt_prime_modulus)
