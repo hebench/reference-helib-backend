@@ -22,11 +22,11 @@ public:
     static constexpr std::size_t NumOpParams          = 2;
 
     // all params generated using HEToolkit by setting DefaultPtxtPrimeModulus to be a Fermat Prime in BGV
-    static constexpr std::size_t DefaultPolyModulusDegree   = 8192;
-    static constexpr std::size_t DefaultCoeffModulusBits = 174;
-    static constexpr std::size_t DefaultKeySwitchColumns = 3;
-    static constexpr std::size_t DefaultPtxtPrimeModulus = 114689; //-1 for CKKS
-    static constexpr std::size_t DefaultHenselLifting    = 1;
+    static constexpr std::size_t DefaultPolyModulusDegree = 8192;
+    static constexpr std::size_t DefaultCoeffModulusBits  = 174;
+    static constexpr std::size_t DefaultKeySwitchColumns  = 3;
+    static constexpr std::size_t DefaultPtxtPrimeModulus  = 114689; //-1 for CKKS
+    static constexpr std::size_t DefaultHenselLifting     = 1;
 
     // other workload parameters
     static constexpr std::size_t DefaultNumThreads = 0; // 0 - use all available threads
