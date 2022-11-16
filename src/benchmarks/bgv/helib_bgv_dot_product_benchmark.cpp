@@ -38,8 +38,8 @@ DotProductBenchmarkDescription::DotProductBenchmarkDescription(
         break;
 
     case hebench::APIBridge::Category::Offline:
-        m_descriptor.cat_params.offline.data_count[0] = 2;
-        m_descriptor.cat_params.offline.data_count[1] = 2;
+        m_descriptor.cat_params.offline.data_count[0] = 0;
+        m_descriptor.cat_params.offline.data_count[1] = 0;
         break;
 
     default:
