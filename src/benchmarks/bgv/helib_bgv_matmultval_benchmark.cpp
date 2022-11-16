@@ -45,7 +45,7 @@ MatMultValBenchmarkDescription::MatMultValBenchmarkDescription()
     default_workload_params.cols_M1() = 8;
 
     default_workload_params.add<std::uint64_t>(
-        MatMultValBenchmarkDescription::DefaultCyclotomicPoly, "CyclotomicPoly");
+        MatMultValBenchmarkDescription::DefaultPolyModulusDegree, "PolyModulusDegree");
     default_workload_params.add<std::uint64_t>(
         MatMultValBenchmarkDescription::DefaultCoeffModulusBits,
         "CoefficientModulusBits");
@@ -101,8 +101,8 @@ std::string MatMultValBenchmarkDescription::getBenchmarkDescription(
 
     assert(p_w_params->count >= MatMultValBenchmarkDescription::NumWorkloadParams);
 
-    std::uint64_t cyclotomic_poly =
-        p_w_params->params[MatMultValBenchmarkDescription::Index_CyclotomicPoly]
+    std::uint64_t poly_modulus_degree =
+        p_w_params->params[MatMultValBenchmarkDescription::Index_PolyModulusDegree]
             .u_param;
     std::uint64_t coeff_modulus_bits =
         p_w_params
@@ -126,7 +126,7 @@ std::string MatMultValBenchmarkDescription::getBenchmarkDescription(
     if (!s_tmp.empty())
         ss << s_tmp << std::endl;
     ss << ", Encryption Parameters" << std::endl
-       << ", , Cyclotomic Polynomial - phi(m), " << cyclotomic_poly << std::endl
+       << ", , Polynomial Modulus Degree - phi(m), " << poly_modulus_degree << std::endl
        << ", , Coefficient Modulus, " << coeff_modulus_bits << std::endl
        << ", , Key Switching Columns, " << key_switch_columns << std::endl
        << ", , Plaintext Prime Modulus, " << ptxt_prime_modulus << std::endl
@@ -158,8 +158,8 @@ MatMultValBenchmark::MatMultValBenchmark(
             HEBENCH_ECODE_INVALID_ARGS);
 
     // validate workload parameters
-    std::uint64_t cyclotomic_poly = m_w_params.get<std::uint64_t>(
-        MatMultValBenchmarkDescription::Index_CyclotomicPoly);
+    std::uint64_t poly_modulus_degree = m_w_params.get<std::uint64_t>(
+        MatMultValBenchmarkDescription::Index_PolyModulusDegree);
     std::uint64_t coeff_modulus_bits = m_w_params.get<std::uint64_t>(
         MatMultValBenchmarkDescription::Index_CoefficientModulusBits);
     std::uint64_t key_switch_columns = m_w_params.get<std::uint64_t>(
@@ -184,12 +184,12 @@ MatMultValBenchmark::MatMultValBenchmark(
         throw hebench::cpp::HEBenchError(
             HEBERROR_MSG_CLASS("Matrix dimensions must be greater than 0."),
             HEBENCH_ECODE_INVALID_ARGS);
-    if (m_w_params.cols_M0() > cyclotomic_poly)
+    if (m_w_params.cols_M0() > poly_modulus_degree)
     {
         std::stringstream ss;
         ss << "Invalid workload parameters. This workload only supports matrices "
               "of dimensions (n x "
-           << cyclotomic_poly << ") x (" << cyclotomic_poly << " x m).";
+           << poly_modulus_degree << ") x (" << poly_modulus_degree << " x m).";
         throw hebench::cpp::HEBenchError(HEBERROR_MSG_CLASS(ss.str()),
                                          HEBENCH_ECODE_INVALID_ARGS);
     } // end if
@@ -199,7 +199,7 @@ MatMultValBenchmark::MatMultValBenchmark(
             HEBENCH_ECODE_INVALID_ARGS);
 
     m_p_ctx_wrapper = HELIBContextWrapper::createBGVContext(
-        static_cast<int>(cyclotomic_poly), static_cast<int>(coeff_modulus_bits),
+        static_cast<int>(poly_modulus_degree), static_cast<int>(coeff_modulus_bits),
         static_cast<int>(key_switch_columns),
         static_cast<int>(ptxt_prime_modulus), static_cast<int>(helsel_lifting));
 
