@@ -21,11 +21,11 @@ public:
     static constexpr const char *AlgorithmDescription = "One vector per ciphertext";
     static constexpr std::size_t NumOpParams          = 2;
 
-    static constexpr std::size_t DefaultCyclotomicPoly   = 16384;
-    static constexpr std::size_t DefaultCoeffModulusBits = 174;
-    static constexpr std::size_t DefaultKeySwitchColumns = 3;
-    static constexpr std::size_t DefaultPtxtPrimeModulus = 114689; //-1 for CKKS
-    static constexpr std::size_t DefaultHenselLifting    = 1;
+    static constexpr std::size_t DefaultPolyModulusDegree = 8192;
+    static constexpr std::size_t DefaultCoeffModulusBits  = 174;
+    static constexpr std::size_t DefaultKeySwitchColumns  = 3;
+    static constexpr std::size_t DefaultPtxtPrimeModulus  = 114689; //-1 for CKKS
+    static constexpr std::size_t DefaultHenselLifting     = 1;
 
     // other workload parameters
     static constexpr std::size_t DefaultNumThreads = 0; // 0 - use all available threads
@@ -35,7 +35,7 @@ public:
         Index_WParamsStart = 0,
         Index_n            = Index_WParamsStart,
         Index_ExtraWParamsStart,
-        Index_CyclotomicPoly = Index_ExtraWParamsStart,
+        Index_PolyModulusDegree = Index_ExtraWParamsStart,
         Index_CoefficientModulusBits,
         Index_KeySwitchColumns,
         Index_PtxtPrimeModulus,

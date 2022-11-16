@@ -34,14 +34,14 @@ public:
 
     /**
    * @brief BFV constructor
-   * @param[in] cyclotomic_poly Cyclotomic polynomial defines phi(m) and is
-   * equal to 2 * poly_modulus_degree.
+   * @param[in] poly_modulus_degree Polynomial Modulus Degree or phi(m) and is
+   * equal to Cyclotomic Order (m) / 2.
    * @param[in] Number of bits in the "ciphertext modulus".
    * @param[in] key_switch_columns Number of columns in key-switching matrix.
    * @param[in] ptxt_prime_modulus Plaintext prime modulus
    * @param[in] helsel_lifting Hensel Lifting (default = 1)
    */
-    static HELIBContextWrapper::Ptr createBGVContext(std::size_t cyclotomic_poly,
+    static HELIBContextWrapper::Ptr createBGVContext(std::size_t poly_modulus_degree,
                                                      int coeff_moduli_bits,
                                                      int key_switch_columns,
                                                      int ptxt_prime_modulus,
@@ -103,7 +103,7 @@ protected:
     HELIBContextWrapper();
     virtual void initCKKS(std::size_t poly_modulus_degree, int coeff_moduli_bits,
                           int key_switch_columns, int precision);
-    virtual void initBGV(std::size_t cyclotomic_poly, int coeff_moduli_bits,
+    virtual void initBGV(std::size_t poly_modulus_degree, int coeff_moduli_bits,
                          int key_switch_columns, int ptxt_prime_modulus,
                          int helsel_lifting);
 
