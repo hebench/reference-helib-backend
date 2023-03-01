@@ -62,7 +62,7 @@ ElementWiseBenchmarkDescription::ElementWiseBenchmarkDescription(
     hebench::cpp::WorkloadParams::VectorSize default_workload_params;
     default_workload_params.n() = 1000;
     default_workload_params.add<std::uint64_t>(
-        ElementWiseBenchmarkDescription::DefaultCyclotomicPoly, "CyclotomicPoly");
+        ElementWiseBenchmarkDescription::DefaultPolyModulusDegree, "PolyModulusDegree");
     default_workload_params.add<std::uint64_t>(
         ElementWiseBenchmarkDescription::DefaultCoeffModulusBits,
         "CoefficientModulusBits");
@@ -111,8 +111,8 @@ std::string ElementWiseBenchmarkDescription::getBenchmarkDescription(
             HEBERROR_MSG_CLASS("Invalid null workload parameters `p_w_params`"),
             HEBENCH_ECODE_INVALID_ARGS);
 
-    std::uint64_t cyclotomic_poly =
-        p_w_params->params[ElementWiseBenchmarkDescription::Index_CyclotomicPoly]
+    std::uint64_t poly_modulus_degree =
+        p_w_params->params[ElementWiseBenchmarkDescription::Index_PolyModulusDegree]
             .u_param;
     std::uint64_t coeff_modulus_bits =
         p_w_params
@@ -141,7 +141,7 @@ std::string ElementWiseBenchmarkDescription::getBenchmarkDescription(
     if (!s_tmp.empty())
         ss << s_tmp << std::endl;
     ss << ", Encryption Parameters" << std::endl
-       << ", , Cyclotomic Polynomial - phi(m), " << cyclotomic_poly << std::endl
+       << ", , Cyclotomic Polynomial - phi(m), " << poly_modulus_degree << std::endl
        << ", , Coefficient Modulus, " << coeff_modulus_bits << std::endl
        << ", , Key Switching Columns, " << key_switch_columns << std::endl
        << ", , Plaintext Prime Modulus, " << ptxt_prime_modulus << std::endl
@@ -172,8 +172,8 @@ ElementWiseBenchmark::ElementWiseBenchmark(
             HEBERROR_MSG_CLASS("Vector size must be greater than 0."),
             HEBENCH_ECODE_INVALID_ARGS);
 
-    std::uint64_t cyclotomic_poly = m_w_params.get<std::uint64_t>(
-        ElementWiseBenchmarkDescription::Index_CyclotomicPoly);
+    std::uint64_t poly_modulus_degree = m_w_params.get<std::uint64_t>(
+        ElementWiseBenchmarkDescription::Index_PolyModulusDegree);
     std::uint64_t coeff_modulus_bits = m_w_params.get<std::uint64_t>(
         ElementWiseBenchmarkDescription::Index_CoefficientModulusBits);
     std::uint64_t key_switch_columns = m_w_params.get<std::uint64_t>(
@@ -199,7 +199,7 @@ ElementWiseBenchmark::ElementWiseBenchmark(
             HEBENCH_ECODE_INVALID_ARGS);
 
     m_p_ctx_wrapper = HELIBContextWrapper::createBGVContext(
-        static_cast<int>(cyclotomic_poly), static_cast<int>(coeff_modulus_bits),
+        static_cast<int>(poly_modulus_degree), static_cast<int>(coeff_modulus_bits),
         static_cast<int>(key_switch_columns),
         static_cast<int>(ptxt_prime_modulus), static_cast<int>(helsel_lifting));
     std::size_t slot_count = m_p_ctx_wrapper->getSlotCount();
