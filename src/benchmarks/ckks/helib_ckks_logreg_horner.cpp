@@ -44,8 +44,8 @@ LogRegBenchmarkDescription::LogRegBenchmarkDescription(
             throw hebench::cpp::HEBenchError(
                 HEBERROR_MSG_CLASS("Batch size must be under " + std::to_string(DefaultPolyModulusDegree / 2) + "."),
                 HEBENCH_ECODE_INVALID_ARGS);
-        m_descriptor.cat_params.offline.data_count[0] = 0;
-        m_descriptor.cat_params.offline.data_count[1] = 0;
+        m_descriptor.cat_params.offline.data_count[0] = 1;
+        m_descriptor.cat_params.offline.data_count[1] = 1;
         m_descriptor.cat_params.offline.data_count[2] = batch_size;
         break;
 

@@ -44,7 +44,7 @@ ElementWiseBenchmarkDescription::ElementWiseBenchmarkDescription(
         break;
 
     case hebench::APIBridge::Category::Offline:
-        m_descriptor.cat_params.offline.data_count[0] = 5; // flexible
+        m_descriptor.cat_params.offline.data_count[0] = 5; // flexibl
         m_descriptor.cat_params.offline.data_count[1] = 5;
         break;
 
