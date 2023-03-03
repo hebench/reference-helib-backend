@@ -31,8 +31,13 @@
 namespace hebench {
 namespace cpp {
 
-BaseEngine *createEngine()
+BaseEngine *createEngine(const std::int8_t *p_buffer, std::uint64_t size)
 {
+
+    // backend doesn't need extra init data
+    (void)p_buffer;
+    (void)size;
+
     // It is a good idea to check here if the API Bridge version is correct for
     // our backend by checking against the constants defined in
     // `hebench/api_bridge/version.h.in` HEBENCH_API_VERSION_*

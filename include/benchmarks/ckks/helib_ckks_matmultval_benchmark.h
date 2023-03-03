@@ -93,7 +93,8 @@ public:
 
     hebench::APIBridge::Handle operate(
         hebench::APIBridge::Handle h_remote_packed,
-        const hebench::APIBridge::ParameterIndexer *p_param_indexers) override;
+        const hebench::APIBridge::ParameterIndexer *p_param_indexers,
+        std::uint64_t indexers_count) override;
 
     std::int64_t classTag() const override
     {

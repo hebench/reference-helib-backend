@@ -44,8 +44,8 @@ LogRegBenchmarkDescription::LogRegBenchmarkDescription(
             throw hebench::cpp::HEBenchError(
                 HEBERROR_MSG_CLASS("Batch size must be under " + std::to_string(DefaultPolyModulusDegree / 2) + "."),
                 HEBENCH_ECODE_INVALID_ARGS);
-        m_descriptor.cat_params.offline.data_count[0] = 0;
-        m_descriptor.cat_params.offline.data_count[1] = 0;
+        m_descriptor.cat_params.offline.data_count[0] = 1;
+        m_descriptor.cat_params.offline.data_count[1] = 1;
         m_descriptor.cat_params.offline.data_count[2] = batch_size;
         break;
 
@@ -516,10 +516,18 @@ void LogRegBenchmark::store(hebench::APIBridge::Handle h_remote_data,
 
 hebench::APIBridge::Handle LogRegBenchmark::operate(
     hebench::APIBridge::Handle h_remote_packed,
-    const hebench::APIBridge::ParameterIndexer *p_param_indexers)
+    const hebench::APIBridge::ParameterIndexer *p_param_indexers,
+    std::uint64_t indexers_count)
 {
-    // input to operation is always EncryptedOpParams
+    if (indexers_count < LogRegBenchmarkDescription::NumOpParams)
+    {
+        std::stringstream ss;
+        ss << "Invalid number of indexers. Expected " << LogRegBenchmarkDescription::NumOpParams
+           << ", but " << indexers_count << " received." << std::endl;
+        throw hebench::cpp::HEBenchError(HEBERROR_MSG_CLASS(ss.str()), HEBENCH_ECODE_INVALID_ARGS);
+    } // end if
 
+    // input to operation is always EncryptedOpParams
     const EncryptedOpParams &remote =
         this->getEngine().retrieveFromHandle<EncryptedOpParams>(
             h_remote_packed, EncryptedOpParamsTag);
